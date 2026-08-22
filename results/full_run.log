@@ -1,0 +1,339 @@
+[run_all] jobs=289 done=0 todo=289 smoke=False
+  [   0.00s] E1 quadratic kappa100.0-n100 GD seed=0 -> it=1021 t=0.005s conv=1
+  [   0.01s] E1 quadratic kappa100.0-n100 NAG-t seed=0 -> it=2075 t=0.014s conv=1
+  [   0.00s] E1 quadratic kappa100.0-n100 NAG-CM seed=0 -> it=211 t=0.001s conv=1
+  [  20.92s] E1 quadratic kappa100.0-n100 L-BFGS seed=0 -> it=50000 t=20.919s conv=0
+  [   0.01s] E1 quadratic kappa100.0-n100 Catalyst seed=0 -> it=212 t=0.007s conv=1
+  [   0.00s] E1 quadratic kappa100.0-n100 Hybrid-fixed th=0.001 seed=0 -> it=95 t=0.004s conv=1
+  [   0.09s] E1 quadratic kappa100.0-n100 Hybrid-adaptive seed=0 -> it=165 t=0.087s conv=1
+  [   0.00s] E1 quadratic kappa100.0-n100 Newton seed=0 -> it=1 t=0.001s conv=1
+  [   0.61s] E1 quadratic kappa100.0-n100 TR seed=0 -> it=5000 t=0.613s conv=0
+  [  18.56s] E1 quadratic kappa100.0-n100 ARC seed=0 -> it=1000 t=18.559s conv=0
+  [   0.04s] E1 quadratic kappa100.0-n100 GD seed=1 -> it=1185 t=0.042s conv=1
+  [   0.09s] E1 quadratic kappa100.0-n100 NAG-t seed=1 -> it=1958 t=0.087s conv=1
+  [   0.01s] E1 quadratic kappa100.0-n100 NAG-CM seed=1 -> it=193 t=0.011s conv=1
+  [  56.34s] E1 quadratic kappa100.0-n100 L-BFGS seed=1 -> it=50000 t=56.336s conv=0
+  [   0.01s] E1 quadratic kappa100.0-n100 Catalyst seed=1 -> it=194 t=0.006s conv=1
+  [   0.00s] E1 quadratic kappa100.0-n100 Hybrid-fixed th=0.001 seed=1 -> it=87 t=0.004s conv=1
+  [   0.18s] E1 quadratic kappa100.0-n100 Hybrid-adaptive seed=1 -> it=150 t=0.184s conv=1
+  [   0.00s] E1 quadratic kappa100.0-n100 Newton seed=1 -> it=1 t=0.001s conv=1
+  [   0.64s] E1 quadratic kappa100.0-n100 TR seed=1 -> it=5000 t=0.644s conv=0
+  [   0.10s] E1 quadratic kappa100.0-n100 ARC seed=1 -> it=6 t=0.097s conv=1
+  [   0.03s] E1 quadratic kappa100.0-n100 GD seed=2 -> it=1180 t=0.026s conv=1
+  [   0.07s] E1 quadratic kappa100.0-n100 NAG-t seed=2 -> it=2144 t=0.071s conv=1
+  [   0.01s] E1 quadratic kappa100.0-n100 NAG-CM seed=2 -> it=204 t=0.006s conv=1
+  [  55.43s] E1 quadratic kappa100.0-n100 L-BFGS seed=2 -> it=50000 t=55.433s conv=0
+  [   0.01s] E1 quadratic kappa100.0-n100 Catalyst seed=2 -> it=205 t=0.005s conv=1
+  [   0.01s] E1 quadratic kappa100.0-n100 Hybrid-fixed th=0.001 seed=2 -> it=91 t=0.006s conv=1
+  [   0.13s] E1 quadratic kappa100.0-n100 Hybrid-adaptive seed=2 -> it=157 t=0.13s conv=1
+  [   0.00s] E1 quadratic kappa100.0-n100 Newton seed=2 -> it=1 t=0.001s conv=1
+  [   0.56s] E1 quadratic kappa100.0-n100 TR seed=2 -> it=5000 t=0.563s conv=0
+  [   0.07s] E1 quadratic kappa100.0-n100 ARC seed=2 -> it=6 t=0.071s conv=1
+  [   0.19s] E1 quadratic kappa1000.0-n100 GD seed=0 -> it=11336 t=0.19s conv=1
+  [   0.42s] E1 quadratic kappa1000.0-n100 NAG-t seed=0 -> it=16808 t=0.422s conv=1
+  [   0.01s] E1 quadratic kappa1000.0-n100 NAG-CM seed=0 -> it=694 t=0.014s conv=1
+  [  90.00s] E1 quadratic kappa1000.0-n100 L-BFGS seed=0 -> it=42553 t=90.0s conv=0
+  [   0.11s] E1 quadratic kappa1000.0-n100 Catalyst seed=0 -> it=3423 t=0.106s conv=1
+  [   0.01s] E1 quadratic kappa1000.0-n100 Hybrid-fixed th=0.001 seed=0 -> it=318 t=0.012s conv=1
+  [   0.78s] E1 quadratic kappa1000.0-n100 Hybrid-adaptive seed=0 -> it=544 t=0.775s conv=1
+  [   0.00s] E1 quadratic kappa1000.0-n100 Newton seed=0 -> it=1 t=0.001s conv=1
+  [   0.75s] E1 quadratic kappa1000.0-n100 TR seed=0 -> it=5000 t=0.748s conv=0
+  [   0.09s] E1 quadratic kappa1000.0-n100 ARC seed=0 -> it=6 t=0.093s conv=1
+  [   0.37s] E1 quadratic kappa1000.0-n100 GD seed=1 -> it=12999 t=0.375s conv=1
+  [   0.59s] E1 quadratic kappa1000.0-n100 NAG-t seed=1 -> it=15839 t=0.594s conv=1
+  [   0.02s] E1 quadratic kappa1000.0-n100 NAG-CM seed=1 -> it=646 t=0.019s conv=1
+  [  60.69s] E1 quadratic kappa1000.0-n100 L-BFGS seed=1 -> it=50000 t=60.691s conv=0
+  [   0.06s] E1 quadratic kappa1000.0-n100 Catalyst seed=1 -> it=3013 t=0.059s conv=1
+  [   0.01s] E1 quadratic kappa1000.0-n100 Hybrid-fixed th=0.001 seed=1 -> it=301 t=0.01s conv=1
+  [   0.60s] E1 quadratic kappa1000.0-n100 Hybrid-adaptive seed=1 -> it=503 t=0.601s conv=1
+  [   0.00s] E1 quadratic kappa1000.0-n100 Newton seed=1 -> it=1 t=0.001s conv=1
+  [   0.58s] E1 quadratic kappa1000.0-n100 TR seed=1 -> it=5000 t=0.579s conv=0
+  [   0.09s] E1 quadratic kappa1000.0-n100 ARC seed=1 -> it=6 t=0.087s conv=1
+  [   0.26s] E1 quadratic kappa1000.0-n100 GD seed=2 -> it=12945 t=0.261s conv=1
+  [   0.52s] E1 quadratic kappa1000.0-n100 NAG-t seed=2 -> it=16903 t=0.516s conv=1
+  [   0.02s] E1 quadratic kappa1000.0-n100 NAG-CM seed=2 -> it=668 t=0.017s conv=1
+  [  60.03s] E1 quadratic kappa1000.0-n100 L-BFGS seed=2 -> it=50000 t=60.027s conv=0
+  [   0.08s] E1 quadratic kappa1000.0-n100 Catalyst seed=2 -> it=3292 t=0.085s conv=1
+  [   0.01s] E1 quadratic kappa1000.0-n100 Hybrid-fixed th=0.001 seed=2 -> it=304 t=0.008s conv=1
+  [   0.74s] E1 quadratic kappa1000.0-n100 Hybrid-adaptive seed=2 -> it=525 t=0.737s conv=1
+  [   0.00s] E1 quadratic kappa1000.0-n100 Newton seed=2 -> it=1 t=0.0s conv=1
+  [   0.73s] E1 quadratic kappa1000.0-n100 TR seed=2 -> it=5000 t=0.726s conv=0
+  [   0.09s] E1 quadratic kappa1000.0-n100 ARC seed=2 -> it=6 t=0.092s conv=1
+  [   4.34s] E1 quadratic kappa10000.0-n100 GD seed=0 -> it=124797 t=4.341s conv=1
+  [   5.69s] E1 quadratic kappa10000.0-n100 NAG-t seed=0 -> it=125732 t=5.689s conv=1
+  [   0.09s] E1 quadratic kappa10000.0-n100 NAG-CM seed=0 -> it=2223 t=0.087s conv=1
+  [  58.80s] E1 quadratic kappa10000.0-n100 L-BFGS seed=0 -> it=50000 t=58.802s conv=0
+  [   0.92s] E1 quadratic kappa10000.0-n100 Catalyst seed=0 -> it=34931 t=0.924s conv=1
+  [   0.03s] E1 quadratic kappa10000.0-n100 Hybrid-fixed th=0.001 seed=0 -> it=1051 t=0.025s conv=1
+  [   2.00s] E1 quadratic kappa10000.0-n100 Hybrid-adaptive seed=0 -> it=1750 t=1.993s conv=1
+  [   0.00s] E1 quadratic kappa10000.0-n100 Newton seed=0 -> it=1 t=0.001s conv=1
+  [   0.66s] E1 quadratic kappa10000.0-n100 TR seed=0 -> it=5000 t=0.664s conv=0
+  [   0.09s] E1 quadratic kappa10000.0-n100 ARC seed=0 -> it=6 t=0.09s conv=1
+  [   3.45s] E1 quadratic kappa10000.0-n100 GD seed=1 -> it=141651 t=3.446s conv=1
+  [   4.03s] E1 quadratic kappa10000.0-n100 NAG-t seed=1 -> it=119131 t=4.028s conv=1
+  [   0.06s] E1 quadratic kappa10000.0-n100 NAG-CM seed=1 -> it=2118 t=0.059s conv=1
+  [  54.72s] E1 quadratic kappa10000.0-n100 L-BFGS seed=1 -> it=50000 t=54.718s conv=0
+  [   1.05s] E1 quadratic kappa10000.0-n100 Catalyst seed=1 -> it=30542 t=1.048s conv=1
+  [   0.03s] E1 quadratic kappa10000.0-n100 Hybrid-fixed th=0.001 seed=1 -> it=1044 t=0.032s conv=1
+  [   4.45s] E1 quadratic kappa10000.0-n100 Hybrid-adaptive seed=1 -> it=3700 t=4.447s conv=0
+  [   0.00s] E1 quadratic kappa10000.0-n100 Newton seed=1 -> it=1 t=0.0s conv=1
+  [   0.74s] E1 quadratic kappa10000.0-n100 TR seed=1 -> it=5000 t=0.738s conv=0
+  [   0.11s] E1 quadratic kappa10000.0-n100 ARC seed=1 -> it=6 t=0.11s conv=1
+  [   3.60s] E1 quadratic kappa10000.0-n100 GD seed=2 -> it=141193 t=3.597s conv=1
+  [   4.37s] E1 quadratic kappa10000.0-n100 NAG-t seed=2 -> it=131711 t=4.374s conv=1
+  [   0.05s] E1 quadratic kappa10000.0-n100 NAG-CM seed=2 -> it=2159 t=0.048s conv=1
+  [  52.11s] E1 quadratic kappa10000.0-n100 L-BFGS seed=2 -> it=50000 t=52.107s conv=0
+  [   0.76s] E1 quadratic kappa10000.0-n100 Catalyst seed=2 -> it=33462 t=0.76s conv=1
+  [   0.02s] E1 quadratic kappa10000.0-n100 Hybrid-fixed th=0.001 seed=2 -> it=1038 t=0.024s conv=1
+  [   3.13s] E1 quadratic kappa10000.0-n100 Hybrid-adaptive seed=2 -> it=1704 t=3.121s conv=1
+  [   0.00s] E1 quadratic kappa10000.0-n100 Newton seed=2 -> it=1 t=0.0s conv=1
+  [   0.98s] E1 quadratic kappa10000.0-n100 TR seed=2 -> it=5000 t=0.982s conv=0
+  [   0.13s] E1 quadratic kappa10000.0-n100 ARC seed=2 -> it=6 t=0.133s conv=1
+  [   0.79s] E1 quadratic kappa100.0-n1000 GD seed=0 -> it=1152 t=0.79s conv=1
+  [   1.70s] E1 quadratic kappa100.0-n1000 NAG-t seed=0 -> it=2367 t=1.703s conv=1
+  [   0.18s] E1 quadratic kappa100.0-n1000 NAG-CM seed=0 -> it=210 t=0.183s conv=1
+  [  90.02s] E1 quadratic kappa100.0-n1000 L-BFGS seed=0 -> it=5943 t=90.016s conv=0
+  [   0.14s] E1 quadratic kappa100.0-n1000 Catalyst seed=0 -> it=212 t=0.143s conv=1
+  [   0.13s] E1 quadratic kappa100.0-n1000 Hybrid-fixed th=0.001 seed=0 -> it=103 t=0.131s conv=1
+  [   0.21s] E1 quadratic kappa100.0-n1000 Hybrid-adaptive seed=0 -> it=210 t=0.208s conv=1
+  [   0.07s] E1 quadratic kappa100.0-n1000 Newton seed=0 -> it=1 t=0.072s conv=1
+  [  13.85s] E1 quadratic kappa100.0-n1000 TR seed=0 -> it=5000 t=13.845s conv=0
+  [  91.39s] E1 quadratic kappa100.0-n1000 ARC seed=0 -> it=10 t=91.387s conv=0
+  [   0.14s] E1 quadratic kappa100.0-n1000 GD seed=1 -> it=1022 t=0.144s conv=1
+  [   0.32s] E1 quadratic kappa100.0-n1000 NAG-t seed=1 -> it=2401 t=0.32s conv=1
+  [   0.03s] E1 quadratic kappa100.0-n1000 NAG-CM seed=1 -> it=213 t=0.028s conv=1
+  [  90.02s] E1 quadratic kappa100.0-n1000 L-BFGS seed=1 -> it=4838 t=90.015s conv=0
+  [   0.16s] E1 quadratic kappa100.0-n1000 Catalyst seed=1 -> it=214 t=0.154s conv=1
+  [   0.16s] E1 quadratic kappa100.0-n1000 Hybrid-fixed th=0.001 seed=1 -> it=104 t=0.163s conv=1
+  [   0.29s] E1 quadratic kappa100.0-n1000 Hybrid-adaptive seed=1 -> it=213 t=0.289s conv=1
+  [   0.09s] E1 quadratic kappa100.0-n1000 Newton seed=1 -> it=1 t=0.09s conv=1
+  [  17.93s] E1 quadratic kappa100.0-n1000 TR seed=1 -> it=5000 t=17.932s conv=0
+  [  49.02s] E1 quadratic kappa100.0-n1000 ARC seed=1 -> it=8 t=49.022s conv=1
+  [   0.71s] E1 quadratic kappa100.0-n1000 GD seed=2 -> it=990 t=0.709s conv=1
+  [   1.73s] E1 quadratic kappa100.0-n1000 NAG-t seed=2 -> it=2380 t=1.726s conv=1
+  [   0.17s] E1 quadratic kappa100.0-n1000 NAG-CM seed=2 -> it=212 t=0.174s conv=1
+  [  90.03s] E1 quadratic kappa100.0-n1000 L-BFGS seed=2 -> it=2895 t=90.025s conv=0
+  [   0.21s] E1 quadratic kappa100.0-n1000 Catalyst seed=2 -> it=213 t=0.212s conv=1
+  [   0.21s] E1 quadratic kappa100.0-n1000 Hybrid-fixed th=0.001 seed=2 -> it=103 t=0.213s conv=1
+  [   0.31s] E1 quadratic kappa100.0-n1000 Hybrid-adaptive seed=2 -> it=212 t=0.309s conv=1
+  [   0.10s] E1 quadratic kappa100.0-n1000 Newton seed=2 -> it=1 t=0.096s conv=1
+  [  18.97s] E1 quadratic kappa100.0-n1000 TR seed=2 -> it=5000 t=18.97s conv=0
+  [  58.79s] E1 quadratic kappa100.0-n1000 ARC seed=2 -> it=8 t=58.789s conv=1
+  [  11.89s] E1 quadratic kappa1000.0-n1000 GD seed=0 -> it=12667 t=11.888s conv=1
+  [  32.06s] E1 quadratic kappa1000.0-n1000 NAG-t seed=0 -> it=20389 t=32.054s conv=1
+  [   0.49s] E1 quadratic kappa1000.0-n1000 NAG-CM seed=0 -> it=689 t=0.49s conv=1
+  [  90.01s] E1 quadratic kappa1000.0-n1000 L-BFGS seed=0 -> it=2564 t=90.01s conv=0
+  [   3.19s] E1 quadratic kappa1000.0-n1000 Catalyst seed=0 -> it=3509 t=3.182s conv=1
+  [   0.30s] E1 quadratic kappa1000.0-n1000 Hybrid-fixed th=0.001 seed=0 -> it=342 t=0.302s conv=1
+  [   0.93s] E1 quadratic kappa1000.0-n1000 Hybrid-adaptive seed=0 -> it=689 t=0.926s conv=1
+  [   0.09s] E1 quadratic kappa1000.0-n1000 Newton seed=0 -> it=1 t=0.088s conv=1
+  [  18.16s] E1 quadratic kappa1000.0-n1000 TR seed=0 -> it=5000 t=18.161s conv=0
+  [  90.39s] E1 quadratic kappa1000.0-n1000 ARC seed=0 -> it=16 t=90.392s conv=0
+  [   1.39s] E1 quadratic kappa1000.0-n1000 GD seed=1 -> it=11240 t=1.386s conv=1
+  [   2.58s] E1 quadratic kappa1000.0-n1000 NAG-t seed=1 -> it=20824 t=2.578s conv=1
+  [   0.10s] E1 quadratic kappa1000.0-n1000 NAG-CM seed=1 -> it=695 t=0.098s conv=1
+  [  90.01s] E1 quadratic kappa1000.0-n1000 L-BFGS seed=1 -> it=9529 t=90.011s conv=0
+  [   3.71s] E1 quadratic kappa1000.0-n1000 Catalyst seed=1 -> it=3540 t=3.706s conv=1
+  [   0.37s] E1 quadratic kappa1000.0-n1000 Hybrid-fixed th=0.001 seed=1 -> it=344 t=0.372s conv=1
+  [   0.86s] E1 quadratic kappa1000.0-n1000 Hybrid-adaptive seed=1 -> it=695 t=0.863s conv=1
+  [   0.09s] E1 quadratic kappa1000.0-n1000 Newton seed=1 -> it=1 t=0.084s conv=1
+  [  15.59s] E1 quadratic kappa1000.0-n1000 TR seed=1 -> it=5000 t=15.591s conv=0
+  [  33.49s] E1 quadratic kappa1000.0-n1000 ARC seed=1 -> it=14 t=33.492s conv=1
+  [   1.37s] E1 quadratic kappa1000.0-n1000 GD seed=2 -> it=9846 t=1.368s conv=1
+  [   3.34s] E1 quadratic kappa1000.0-n1000 NAG-t seed=2 -> it=20635 t=3.338s conv=1
+  [   0.10s] E1 quadratic kappa1000.0-n1000 NAG-CM seed=2 -> it=693 t=0.099s conv=1
+  [  90.00s] E1 quadratic kappa1000.0-n1000 L-BFGS seed=2 -> it=17045 t=90.001s conv=0
+  [   0.62s] E1 quadratic kappa1000.0-n1000 Catalyst seed=2 -> it=3502 t=0.619s conv=1
+  [   0.10s] E1 quadratic kappa1000.0-n1000 Hybrid-fixed th=0.001 seed=2 -> it=343 t=0.1s conv=1
+  [   0.18s] E1 quadratic kappa1000.0-n1000 Hybrid-adaptive seed=2 -> it=693 t=0.181s conv=1
+  [   0.03s] E1 quadratic kappa1000.0-n1000 Newton seed=2 -> it=1 t=0.028s conv=1
+  [   2.58s] E1 quadratic kappa1000.0-n1000 TR seed=2 -> it=5000 t=2.585s conv=0
+  [  91.29s] E1 quadratic kappa1000.0-n1000 ARC seed=2 -> it=61 t=91.289s conv=0
+  [  17.25s] E1 quadratic kappa10000.0-n1000 GD seed=0 -> it=138528 t=17.247s conv=1
+  [  22.36s] E1 quadratic kappa10000.0-n1000 NAG-t seed=0 -> it=172984 t=22.357s conv=1
+  [   0.39s] E1 quadratic kappa10000.0-n1000 NAG-CM seed=0 -> it=2253 t=0.389s conv=1
+  [  90.00s] E1 quadratic kappa10000.0-n1000 L-BFGS seed=0 -> it=16881 t=90.003s conv=0
+  [   4.50s] E1 quadratic kappa10000.0-n1000 Catalyst seed=0 -> it=35581 t=4.501s conv=1
+  [   0.13s] E1 quadratic kappa10000.0-n1000 Hybrid-fixed th=0.001 seed=0 -> it=1151 t=0.131s conv=1
+  [   0.32s] E1 quadratic kappa10000.0-n1000 Hybrid-adaptive seed=0 -> it=2253 t=0.321s conv=1
+  [   0.02s] E1 quadratic kappa10000.0-n1000 Newton seed=0 -> it=1 t=0.023s conv=1
+  [   2.61s] E1 quadratic kappa10000.0-n1000 TR seed=0 -> it=5000 t=2.609s conv=0
+  [  94.83s] E1 quadratic kappa10000.0-n1000 ARC seed=0 -> it=24 t=94.833s conv=0
+  [  90.00s] E1 quadratic kappa10000.0-n1000 GD seed=1 -> it=121260 t=90.0s conv=0
+  [  90.00s] E1 quadratic kappa10000.0-n1000 NAG-t seed=1 -> it=122956 t=90.0s conv=0
+  [   1.74s] E1 quadratic kappa10000.0-n1000 NAG-CM seed=1 -> it=2258 t=1.735s conv=1
+  [  90.02s] E1 quadratic kappa10000.0-n1000 L-BFGS seed=1 -> it=3657 t=90.019s conv=0
+  [  25.35s] E1 quadratic kappa10000.0-n1000 Catalyst seed=1 -> it=35924 t=25.351s conv=1
+  [   0.89s] E1 quadratic kappa10000.0-n1000 Hybrid-fixed th=0.001 seed=1 -> it=1152 t=0.894s conv=1
+  [   2.25s] E1 quadratic kappa10000.0-n1000 Hybrid-adaptive seed=1 -> it=2258 t=2.247s conv=1
+  [   0.08s] E1 quadratic kappa10000.0-n1000 Newton seed=1 -> it=1 t=0.081s conv=1
+  [  15.76s] E1 quadratic kappa10000.0-n1000 TR seed=1 -> it=5000 t=15.757s conv=0
+  [  43.08s] E1 quadratic kappa10000.0-n1000 ARC seed=1 -> it=7 t=43.078s conv=1
+  [  12.91s] E1 quadratic kappa10000.0-n1000 GD seed=2 -> it=105358 t=12.907s conv=1
+  [  24.29s] E1 quadratic kappa10000.0-n1000 NAG-t seed=2 -> it=171134 t=24.287s conv=1
+  [   0.38s] E1 quadratic kappa10000.0-n1000 NAG-CM seed=2 -> it=2254 t=0.376s conv=1
+  [  90.01s] E1 quadratic kappa10000.0-n1000 L-BFGS seed=2 -> it=13995 t=90.008s conv=0
+  [   4.36s] E1 quadratic kappa10000.0-n1000 Catalyst seed=2 -> it=35505 t=4.363s conv=1
+  [   0.26s] E1 quadratic kappa10000.0-n1000 Hybrid-fixed th=0.001 seed=2 -> it=1159 t=0.262s conv=1
+  [   0.43s] E1 quadratic kappa10000.0-n1000 Hybrid-adaptive seed=2 -> it=2254 t=0.434s conv=1
+  [   0.03s] E1 quadratic kappa10000.0-n1000 Newton seed=2 -> it=1 t=0.033s conv=1
+  [   4.57s] E1 quadratic kappa10000.0-n1000 TR seed=2 -> it=5000 t=4.573s conv=0
+  [  12.18s] E1 quadratic kappa10000.0-n1000 ARC seed=2 -> it=8 t=12.183s conv=1
+  [   0.08s] E2 quadratic kappa1000.0-n1000 Hybrid-fixed th=0.1 seed=0 -> it=206 t=0.079s conv=1
+  [   0.08s] E2 quadratic kappa1000.0-n1000 Hybrid-fixed th=0.023101297000831605 seed=0 -> it=250 t=0.084s conv=1
+  [   0.09s] E2 quadratic kappa1000.0-n1000 Hybrid-fixed th=0.005336699231206312 seed=0 -> it=292 t=0.089s conv=1
+  [   0.10s] E2 quadratic kappa1000.0-n1000 Hybrid-fixed th=0.0012328467394420659 seed=0 -> it=336 t=0.097s conv=1
+  [   0.12s] E2 quadratic kappa1000.0-n1000 Hybrid-fixed th=0.0002848035868435802 seed=0 -> it=380 t=0.117s conv=1
+  [   0.13s] E2 quadratic kappa1000.0-n1000 Hybrid-fixed th=6.579332246575683e-05 seed=0 -> it=424 t=0.131s conv=1
+  [   0.13s] E2 quadratic kappa1000.0-n1000 Hybrid-fixed th=1.5199110829529332e-05 seed=0 -> it=468 t=0.128s conv=1
+  [ 176.79s] E2 quadratic kappa1000.0-n1000 Hybrid-fixed th=3.5111917342151347e-06 seed=0 -> it=2512 t=176.789s conv=0
+  [   0.54s] E2 quadratic kappa1000.0-n1000 Hybrid-fixed th=8.111308307896872e-07 seed=0 -> it=557 t=0.541s conv=1
+  [ 180.03s] E2 quadratic kappa1000.0-n1000 Hybrid-fixed th=1.873817422860383e-07 seed=0 -> it=2205 t=180.026s conv=0
+  [   0.83s] E2 quadratic kappa1000.0-n1000 Hybrid-fixed th=4.328761281083061e-08 seed=0 -> it=643 t=0.826s conv=1
+  [   0.52s] E2 quadratic kappa1000.0-n1000 Hybrid-fixed th=1e-08 seed=0 -> it=689 t=0.516s conv=0
+  [   0.76s] E3 quadratic kappa1000.0-n1000 Hybrid-adaptive seed=0 -> it=689 t=0.76s conv=1
+  [   0.07s] E2 logistic lam0.01-m2000-n200 Hybrid-fixed th=0.1 seed=0 -> it=16 t=0.071s conv=1
+  [   0.05s] E2 logistic lam0.01-m2000-n200 Hybrid-fixed th=0.023101297000831605 seed=0 -> it=22 t=0.05s conv=1
+  [   0.04s] E2 logistic lam0.01-m2000-n200 Hybrid-fixed th=0.005336699231206312 seed=0 -> it=25 t=0.042s conv=1
+  [   0.04s] E2 logistic lam0.01-m2000-n200 Hybrid-fixed th=0.0012328467394420659 seed=0 -> it=35 t=0.037s conv=1
+  [   0.05s] E2 logistic lam0.01-m2000-n200 Hybrid-fixed th=0.0002848035868435802 seed=0 -> it=37 t=0.046s conv=1
+  [   0.06s] E2 logistic lam0.01-m2000-n200 Hybrid-fixed th=6.579332246575683e-05 seed=0 -> it=50 t=0.054s conv=1
+  [   0.04s] E2 logistic lam0.01-m2000-n200 Hybrid-fixed th=1.5199110829529332e-05 seed=0 -> it=51 t=0.041s conv=1
+  [   0.05s] E2 logistic lam0.01-m2000-n200 Hybrid-fixed th=3.5111917342151347e-06 seed=0 -> it=64 t=0.049s conv=1
+  [   0.04s] E2 logistic lam0.01-m2000-n200 Hybrid-fixed th=8.111308307896872e-07 seed=0 -> it=66 t=0.038s conv=1
+  [   0.05s] E2 logistic lam0.01-m2000-n200 Hybrid-fixed th=1.873817422860383e-07 seed=0 -> it=79 t=0.054s conv=1
+  [   0.06s] E2 logistic lam0.01-m2000-n200 Hybrid-fixed th=4.328761281083061e-08 seed=0 -> it=81 t=0.06s conv=1
+  [   0.06s] E2 logistic lam0.01-m2000-n200 Hybrid-fixed th=1e-08 seed=0 -> it=94 t=0.055s conv=0
+  [   0.21s] E3 logistic lam0.01-m2000-n200 Hybrid-adaptive seed=0 -> it=94 t=0.212s conv=1
+  [   1.95s] E2 logsumexp m300-n50 Hybrid-fixed th=0.1 seed=0 -> it=655 t=1.951s conv=1
+  [   2.08s] E2 logsumexp m300-n50 Hybrid-fixed th=0.023101297000831605 seed=0 -> it=501 t=2.077s conv=1
+  [   5.87s] E2 logsumexp m300-n50 Hybrid-fixed th=0.005336699231206312 seed=0 -> it=1737 t=5.867s conv=1
+  [   2.29s] E2 logsumexp m300-n50 Hybrid-fixed th=0.0012328467394420659 seed=0 -> it=734 t=2.287s conv=1
+  [   0.07s] E2 logsumexp m300-n50 Hybrid-fixed th=0.0002848035868435802 seed=0 -> it=259 t=0.07s conv=1
+  [   0.15s] E2 logsumexp m300-n50 Hybrid-fixed th=6.579332246575683e-05 seed=0 -> it=271 t=0.155s conv=1
+  [   0.07s] E2 logsumexp m300-n50 Hybrid-fixed th=1.5199110829529332e-05 seed=0 -> it=259 t=0.071s conv=1
+  [   0.06s] E2 logsumexp m300-n50 Hybrid-fixed th=3.5111917342151347e-06 seed=0 -> it=259 t=0.058s conv=1
+  [   1.09s] E2 logsumexp m300-n50 Hybrid-fixed th=8.111308307896872e-07 seed=0 -> it=516 t=1.092s conv=1
+  [   0.38s] E2 logsumexp m300-n50 Hybrid-fixed th=1.873817422860383e-07 seed=0 -> it=325 t=0.378s conv=1
+  [   0.06s] E2 logsumexp m300-n50 Hybrid-fixed th=4.328761281083061e-08 seed=0 -> it=259 t=0.057s conv=1
+  [   0.05s] E2 logsumexp m300-n50 Hybrid-fixed th=1e-08 seed=0 -> it=259 t=0.051s conv=1
+  !! FAIL E3/logsumexp/{'n': 50, 'm': 300}/Hybrid-adaptive: Traceback (most recent call last):
+  File "C:\Users\Windows.11\Desktop\New folder\code\run_all.py", line 106, in execute
+    s = hybrid_adaptive(pb, x0, eps=eps, max_time=min(mt, 900.0))
+  File "C:\Users\Windows.11\Desktop\New folder\code\hybrid.py", line 232, in hybrid_adaptive
+    kap_hat, _, _ = kappa_estimate(pb, x_cur, lan_m)
+                    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Windows.11\Desktop\New folder\code\hybrid.py", line 84, in kappa_estimate
+    lmax, lmin = lanczos_extremes(pb, x, m)
+                 ~~~~~~~~~~~~~~~~^^^^^^^^^^
+ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 50 is different from 300)
+
+  [   2.70s] E4 rosenbrock n50 NAG-t seed=0 -> it=15673 t=2.704s conv=1
+  [   0.09s] E4 rosenbrock n50 Newton seed=0 -> it=174 t=0.09s conv=1
+  [   0.12s] E4 rosenbrock n50 L-BFGS seed=0 -> it=285 t=0.125s conv=1
+  [   2.91s] E4 rosenbrock n50 TR seed=0 -> it=5000 t=2.908s conv=0
+  [  11.05s] E4 rosenbrock n50 ARC seed=0 -> it=1000 t=11.047s conv=0
+  [   2.75s] E4 rosenbrock n50 Hybrid-fixed th=0.001 seed=0 -> it=14854 t=2.749s conv=1
+  [  28.04s] E4 rosenbrock n50 Hybrid-adaptive seed=0 -> it=15338 t=28.027s conv=1
+  [   2.56s] E4 rosenbrock n50 NAG-t seed=1 -> it=15673 t=2.556s conv=1
+  [   0.13s] E4 rosenbrock n50 Newton seed=1 -> it=174 t=0.132s conv=1
+  [   0.12s] E4 rosenbrock n50 L-BFGS seed=1 -> it=285 t=0.122s conv=1
+  [   2.36s] E4 rosenbrock n50 TR seed=1 -> it=5000 t=2.357s conv=0
+  [   8.56s] E4 rosenbrock n50 ARC seed=1 -> it=1000 t=8.557s conv=0
+  [   1.44s] E4 rosenbrock n50 Hybrid-fixed th=0.001 seed=1 -> it=14854 t=1.436s conv=1
+  [   5.33s] E4 rosenbrock n50 Hybrid-adaptive seed=1 -> it=15338 t=5.324s conv=1
+  [   1.27s] E4 rosenbrock n100 NAG-t seed=0 -> it=32277 t=1.274s conv=1
+  [   0.04s] E4 rosenbrock n100 Newton seed=0 -> it=247 t=0.041s conv=1
+  [   0.05s] E4 rosenbrock n100 L-BFGS seed=0 -> it=537 t=0.051s conv=1
+  [   0.15s] E4 rosenbrock n100 TR seed=0 -> it=492 t=0.146s conv=1
+  [  16.22s] E4 rosenbrock n100 ARC seed=0 -> it=1000 t=16.223s conv=0
+  [   4.93s] E4 rosenbrock n100 Hybrid-fixed th=0.001 seed=0 -> it=31344 t=4.935s conv=1
+  [  61.68s] E4 rosenbrock n100 Hybrid-adaptive seed=0 -> it=31946 t=61.656s conv=1
+  [   5.65s] E4 rosenbrock n100 NAG-t seed=1 -> it=32277 t=5.652s conv=1
+  [   0.21s] E4 rosenbrock n100 Newton seed=1 -> it=247 t=0.206s conv=1
+  [   0.25s] E4 rosenbrock n100 L-BFGS seed=1 -> it=537 t=0.248s conv=1
+  [   0.66s] E4 rosenbrock n100 TR seed=1 -> it=492 t=0.656s conv=1
+  [  17.59s] E4 rosenbrock n100 ARC seed=1 -> it=1000 t=17.586s conv=0
+  [   4.90s] E4 rosenbrock n100 Hybrid-fixed th=0.001 seed=1 -> it=31344 t=4.897s conv=1
+  [  53.00s] E4 rosenbrock n100 Hybrid-adaptive seed=1 -> it=31946 t=52.973s conv=1
+  [ 150.00s] E4 logsumexp m500-n50 NAG-t seed=0 -> it=56555 t=150.001s conv=0
+  [  13.44s] E4 logsumexp m500-n50 Newton seed=0 -> it=2000 t=13.441s conv=0
+  !! FAIL E4/logsumexp/{'n': 50, 'm': 500}/TR: Traceback (most recent call last):
+  File "C:\Users\Windows.11\Desktop\New folder\code\run_all.py", line 108, in execute
+    s = SOLVERS[method](pb, x0, eps, mt)
+  File "C:\Users\Windows.11\Desktop\New folder\code\run_all.py", line 85, in <lambda>
+    "TR": lambda pb, x0, eps, mt: M.tr_steihaug(pb, x0, eps=eps, max_time=mt),
+                                  ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Windows.11\Desktop\New folder\code\methods.py", line 272, in tr_steihaug
+    Hd = pb.hv(x, d); hv += 1
+ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 50 is different from 500)
+
+  [  11.54s] E4 logsumexp m500-n50 ARC seed=0 -> it=1000 t=11.535s conv=0
+  [  12.46s] E4 logsumexp m500-n50 Hybrid-fixed th=0.001 seed=0 -> it=2057 t=12.458s conv=0
+  !! FAIL E4/logsumexp/{'n': 50, 'm': 500}/Hybrid-adaptive: Traceback (most recent call last):
+  File "C:\Users\Windows.11\Desktop\New folder\code\run_all.py", line 106, in execute
+    s = hybrid_adaptive(pb, x0, eps=eps, max_time=min(mt, 900.0))
+  File "C:\Users\Windows.11\Desktop\New folder\code\hybrid.py", line 232, in hybrid_adaptive
+    kap_hat, _, _ = kappa_estimate(pb, x_cur, lan_m)
+                    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Windows.11\Desktop\New folder\code\hybrid.py", line 84, in kappa_estimate
+    lmax, lmin = lanczos_extremes(pb, x, m)
+                 ~~~~~~~~~~~~~~~~^^^^^^^^^^
+ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 50 is different from 500)
+
+  [   0.06s] E4 logsumexp m500-n50 NAG-t seed=1 -> it=167 t=0.056s conv=1
+  [  18.40s] E4 logsumexp m500-n50 Newton seed=1 -> it=2000 t=18.395s conv=0
+  !! FAIL E4/logsumexp/{'n': 50, 'm': 500}/TR: Traceback (most recent call last):
+  File "C:\Users\Windows.11\Desktop\New folder\code\run_all.py", line 108, in execute
+    s = SOLVERS[method](pb, x0, eps, mt)
+  File "C:\Users\Windows.11\Desktop\New folder\code\run_all.py", line 85, in <lambda>
+    "TR": lambda pb, x0, eps, mt: M.tr_steihaug(pb, x0, eps=eps, max_time=mt),
+                                  ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Windows.11\Desktop\New folder\code\methods.py", line 272, in tr_steihaug
+    Hd = pb.hv(x, d); hv += 1
+ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 50 is different from 500)
+
+  [  11.38s] E4 logsumexp m500-n50 ARC seed=1 -> it=1000 t=11.378s conv=0
+  [   0.50s] E4 logsumexp m500-n50 Hybrid-fixed th=0.001 seed=1 -> it=272 t=0.502s conv=1
+  !! FAIL E4/logsumexp/{'n': 50, 'm': 500}/Hybrid-adaptive: Traceback (most recent call last):
+  File "C:\Users\Windows.11\Desktop\New folder\code\run_all.py", line 106, in execute
+    s = hybrid_adaptive(pb, x0, eps=eps, max_time=min(mt, 900.0))
+  File "C:\Users\Windows.11\Desktop\New folder\code\hybrid.py", line 232, in hybrid_adaptive
+    kap_hat, _, _ = kappa_estimate(pb, x_cur, lan_m)
+                    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Windows.11\Desktop\New folder\code\hybrid.py", line 84, in kappa_estimate
+    lmax, lmin = lanczos_extremes(pb, x, m)
+                 ~~~~~~~~~~~~~~~~^^^^^^^^^^
+ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 50 is different from 500)
+
+  [   0.41s] E5 logistic lam0.01-m5000-n1000 GD seed=0 -> it=192 t=0.413s conv=1
+  [   0.82s] E5 logistic lam0.01-m5000-n1000 NAG-t seed=0 -> it=395 t=0.814s conv=1
+  [   0.25s] E5 logistic lam0.01-m5000-n1000 NAG-CM seed=0 -> it=116 t=0.245s conv=1
+  [   0.26s] E5 logistic lam0.01-m5000-n1000 L-BFGS seed=0 -> it=35 t=0.257s conv=1
+  [   0.26s] E5 logistic lam0.01-m5000-n1000 Catalyst seed=0 -> it=117 t=0.259s conv=1
+  [   0.32s] E5 logistic lam0.01-m5000-n1000 Hybrid-fixed th=0.001 seed=0 -> it=46 t=0.321s conv=1
+  [   0.95s] E5 logistic lam0.01-m5000-n1000 Hybrid-adaptive seed=0 -> it=116 t=0.953s conv=1
+  [   0.95s] E5 logistic lam0.01-m5000-n1000 Newton seed=0 -> it=9 t=0.945s conv=1
+  [   0.31s] E5 logistic lam0.01-m5000-n1000 TR seed=0 -> it=19 t=0.314s conv=1
+  [  29.86s] E5 logistic lam0.01-m5000-n1000 ARC seed=0 -> it=14 t=29.849s conv=1
+  [   1.02s] E5 logistic lam0.01-m5000-n1000 GD seed=1 -> it=191 t=1.021s conv=1
+  [   0.78s] E5 logistic lam0.01-m5000-n1000 NAG-t seed=1 -> it=380 t=0.781s conv=1
+  [   0.24s] E5 logistic lam0.01-m5000-n1000 NAG-CM seed=1 -> it=115 t=0.241s conv=1
+  [   0.22s] E5 logistic lam0.01-m5000-n1000 L-BFGS seed=1 -> it=34 t=0.221s conv=1
+  [   0.25s] E5 logistic lam0.01-m5000-n1000 Catalyst seed=1 -> it=116 t=0.25s conv=1
+  [   0.29s] E5 logistic lam0.01-m5000-n1000 Hybrid-fixed th=0.001 seed=1 -> it=45 t=0.285s conv=1
+  [   1.02s] E5 logistic lam0.01-m5000-n1000 Hybrid-adaptive seed=1 -> it=115 t=1.023s conv=1
+  [   0.93s] E5 logistic lam0.01-m5000-n1000 Newton seed=1 -> it=9 t=0.925s conv=1
+  [   0.27s] E5 logistic lam0.01-m5000-n1000 TR seed=1 -> it=17 t=0.265s conv=1
+  [  22.89s] E5 logistic lam0.01-m5000-n1000 ARC seed=1 -> it=14 t=22.885s conv=1
+  [   0.40s] E5 logistic lam0.01-m5000-n1000 GD seed=2 -> it=188 t=0.4s conv=1
+  [   0.76s] E5 logistic lam0.01-m5000-n1000 NAG-t seed=2 -> it=367 t=0.757s conv=1
+  [   0.24s] E5 logistic lam0.01-m5000-n1000 NAG-CM seed=2 -> it=116 t=0.239s conv=1
+  [   0.32s] E5 logistic lam0.01-m5000-n1000 L-BFGS seed=2 -> it=34 t=0.315s conv=1
+  [   0.24s] E5 logistic lam0.01-m5000-n1000 Catalyst seed=2 -> it=117 t=0.239s conv=1
+  [   0.28s] E5 logistic lam0.01-m5000-n1000 Hybrid-fixed th=0.001 seed=2 -> it=46 t=0.279s conv=1
+  [   0.98s] E5 logistic lam0.01-m5000-n1000 Hybrid-adaptive seed=2 -> it=116 t=0.979s conv=1
+  [   0.89s] E5 logistic lam0.01-m5000-n1000 Newton seed=2 -> it=9 t=0.888s conv=1
+  [   0.29s] E5 logistic lam0.01-m5000-n1000 TR seed=2 -> it=18 t=0.287s conv=1
+  [  23.18s] E5 logistic lam0.01-m5000-n1000 ARC seed=2 -> it=14 t=23.176s conv=1
+[run_all] finished session: 289 runs in 56.7 min
