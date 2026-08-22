@@ -76,6 +76,44 @@ def _newton_dir(H, g):
     return -g
 
 
+class _AdaptiveNAG:
+    """Accelerated gradient with backtracking L estimate + gradient restart.
+
+    For problems with unknown constants: maintains a local Lipschitz estimate
+    L_hat, accepts a step under the model-decrease test
+        f(new) <= f(y) + g^T d + 0.5 L_hat ||d||^2,
+    doubles L_hat on violation, halves it (bounded) on easy success, and
+    restarts momentum whenever the new gradient opposes the motion
+    (O'Donoghue-Candes criterion g^T (x_new - x_old) > 0).
+    """
+
+    def __init__(self, L0=1.0, beta=0.9):
+        self.L_hat = L0
+        self.beta = beta
+        self.px = None
+
+    def step(self, pb, x_cur, y, f_y, g, fe):
+        while True:
+            d = -(1.0 / self.L_hat) * g
+            xn = y + d
+            fn = pb.f(xn)
+            fe += 1
+            model = f_y + float(g @ d) + 0.5 * self.L_hat * float(d @ d)
+            if np.isfinite(fn) and fn <= model + 1e-15 * abs(f_y):
+                break
+            self.L_hat *= 2.0
+            if self.L_hat > 1e16:
+                return fe, x_cur - (d if False else (1e-8) * g)
+        self.L_hat = max(0.25 * self.L_hat, 1e-8)
+        beta_use = self.beta
+        if self.px is not None and \
+                float(g @ (xn - x_cur)) > 0:
+            beta_use = 0.0                      # gradient restart
+        self.px = x_cur.copy()
+        y_new = xn + beta_use * (xn - x_cur)
+        return fe, y_new
+
+
 def _bb_descent(pb, x, f_x, g, bb, fe, dec=0.5):
     """One BB-gradient step with Armijo safeguard; returns (alpha, fe, x_new)."""
     a_bb = bb.alpha(pb, x, g, fe)
@@ -92,6 +130,37 @@ def _bb_descent(pb, x, f_x, g, bb, fe, dec=0.5):
         fe += 1
         t *= dec
     return 1e-8, fe, x - 1e-8 * g
+
+
+def nag_adaptive(pb, x0, eps=1e-8, max_time=120.0, max_iter=2_000_000):
+    """NAG-AR: accelerated gradient for unknown constants.
+
+    Backtracking Lipschitz estimate + O'Donoghue-Candes gradient restart.
+    Baseline of choice when L/mu are unavailable (e.g. Rosenbrock).
+    """
+    name = "NAG-AR"
+    y_old = np.asarray(x0, float).copy()
+    y = y_old.copy()
+    an = _AdaptiveNAG()
+    fe = ge = he = hv = 0
+    it = 0
+    t0 = time.perf_counter()
+    hist = []
+    f_y = pb.f(y); fe += 1
+    g = pb.grad(y); ge += 1
+    gn = float(np.linalg.norm(g))
+    while True:
+        hist.append((time.perf_counter() - t0, gn))
+        if gn <= eps or not _budget_ok(it, t0, max_iter, max_time):
+            s = _stats(name, pb, y, t0, it, fe, ge, he, hv, hist, gn)
+            s["converged"] = gn <= eps
+            return s
+        fe, y_new = an.step(pb, y_old, y, f_y, g, fe)
+        f_y_new = pb.f(y_new); fe += 1
+        g_new = pb.grad(y_new); ge += 1
+        y_old, y = y, y_new
+        f_y, g, gn = f_y_new, g_new, float(np.linalg.norm(g_new))
+        it += 1
 
 
 # ------------------------------------------------------------------- GD ------
@@ -197,6 +266,68 @@ def newton_ls(pb, x0, eps=1e-8, max_iter=2000, max_time=600.0, name="Newton"):
         if a > 0:
             x = x + a * p
         else:
+            ag, fe = _backtrack(pb, x, f_x, g, -g)
+            t = ag if ag > 0 else 1e-6 / max(gn, 1e-300)
+            x = x - t * g
+        it += 1
+
+
+def newton_cg(pb, x0, eps=1e-8, max_iter=2000, max_time=600.0,
+              inner_tol=1e-4, name="Newton-CG"):
+    """Truncated-CG Newton using only Hessian-vector products.
+
+    Fair-timing counterpart of dense `newton_ls`: pays hv() per product and
+    never forms the Hessian, so wall time is comparable across problems where
+    a cached Hessian would otherwise be free. Inner solver: Steihaug-style
+    truncated conjugate gradients (zero initial guess, residual tolerance
+    inner_tol * ||g||, negative-curvature stop, cap min(n, 1000) products).
+    """
+    x = np.asarray(x0, float).copy()
+    t0, it, fe, ge, he, hv = time.perf_counter(), 0, 0, 0, 0, 0
+    hist = []
+
+    def _cg(g):
+        nonlocal hv
+        n = len(g)
+        b = -g                            # solve H p = -g
+        p = np.zeros_like(g)
+        r = b.copy()
+        d = b.copy()
+        rg2 = float(r @ r)
+        gn0 = max(np.sqrt(rg2), 1e-300)
+        for _ in range(min(n, 1000)):
+            Hd = pb.hv(x, d); hv += 1
+            dh = float(d @ Hd)
+            dn2 = float(d @ d)
+            if not np.isfinite(dh) or dh <= 1e-13 * dn2:
+                break                      # (near-)negative curvature: stop
+            a_c = rg2 / dh
+            p += a_c * d
+            r -= a_c * Hd
+            rg2_new = float(r @ r)
+            if np.sqrt(rg2_new) <= inner_tol * gn0:
+                break
+            d = r + (rg2_new / rg2) * d
+            rg2 = rg2_new
+        return p
+
+    while True:
+        g = pb.grad(x); ge += 1
+        gn = float(np.linalg.norm(g))
+        hist.append((time.perf_counter() - t0, gn))
+        if gn <= eps or not _budget_ok(it, t0, max_iter, max_time):
+            s = _stats(name, pb, x, t0, it, fe, ge, he, hv, hist, gn)
+            s["converged"] = gn <= eps
+            return s
+        p = _cg(g)
+        f_x = pb.f(x); fe += 1
+        moved = False
+        if np.isfinite(p).all() and float(g @ p) < 0:
+            a, fe = _backtrack(pb, x, f_x, g, p)
+            if a > 0:
+                x = x + a * p
+                moved = True
+        if not moved:
             ag, fe = _backtrack(pb, x, f_x, g, -g)
             t = ag if ag > 0 else 1e-6 / max(gn, 1e-300)
             x = x - t * g
