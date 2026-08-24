@@ -36,7 +36,7 @@ class LibsvmLogistic:
         path = os.path.join(data_dir, dataset)
         if not os.path.exists(path):
             raise FileNotFoundError(
-                f"{path} missing; run code/fetch_data.py first")
+                f"{path} missing; run: python code/problems_real.py")
         X, y = load_libsvm(path, n_features)
         self.dataset = dataset
         self.n = n_features

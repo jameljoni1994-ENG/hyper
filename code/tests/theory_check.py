@@ -8,6 +8,12 @@ Checks
                 penalty prediction accuracy as gamma -> 1.
 [consistency]   The closed form theta_star matches a brute-force argmin of the
                 k1/k2 cost model used by hybrid.py/hybrid_v2.py.
+[regime]        Regime map: sufficient flatness criterion
+                u* >= |ln gamma|/sqrt(2 delta) is valid+conservative; penalty
+                blow-up as u* -> 0 (>= 20x between theta*=0.1 and 0.9).
+[basin]         Lemma 3b: squaring count ceil(log2((u_eps-lnC)/(u_g-lnC)))
+                matches direct iteration of ||g|| <- C||g||^2; C=1 recovers
+                the model count log2(u_eps/u_g).
 """
 import os
 import sys
@@ -132,6 +138,51 @@ for gamma, expect in ((2, 1.5), (10, 16), (100, 65)):
     got = 100 * np.log(gamma) ** 2 / denom
     check(f"sens: headline excess ~{expect}% at gamma={gamma}",
           abs(got - expect) < 1.0, f"(got {got:.1f}%)")
+
+# ---------------------------------------------------------------- [regime] --
+def sens_pred_us(gamma, us, eps=1e-8):
+    denom = 2.0 * us**2 * (1.0 + np.log(np.log(1.0 / eps) / us))
+    return np.log(gamma) ** 2 / denom
+
+
+ok_reg = True
+# (i) sufficient criterion u* >= |ln g|/sqrt(2 delta): valid at the critical
+# point, violated well inside it (true crossing sits in (0.6, 1.0]*u_crit --
+# the criterion is conservative by the [1+ln(L/u*)] factor)
+us_crit = np.log(10.0) / np.sqrt(0.1)          # delta = 5%, gamma = 10
+p_at_crit = sens_pred_us(10.0, us_crit)
+if not (p_at_crit <= 0.05 and sens_pred_us(10.0, 0.6 * us_crit) > 0.05):
+    ok_reg = False
+# (ii) blow-up: same gamma=10 miss at theta*=0.9 costs >= 20x theta*=0.1
+r_flat = sens_pred_us(10.0, np.log(10.0))       # ~16 %
+r_near_one = sens_pred_us(10.0, 0.105)          # theta* = 0.9
+if not (r_near_one >= 20.0 * r_flat):
+    ok_reg = False
+check("regime: flatness criterion valid+conservative; penalty blows up "
+      "as u* -> 0", ok_reg,
+      f"(u*_crit={us_crit:.3f} -> {100 * p_at_crit:.1f}%<=5%; "
+      f"ratio near-one/flat={r_near_one / r_flat:.0f}x)")
+
+# ----------------------------------------------------------------- [basin] --
+ok_bas = True
+for _ in range(25):
+    C = float(10 ** rng.uniform(0, 3))
+    ue = float(rng.uniform(np.log(C) + 0.5, 40.0))      # need u_eps > ln C
+    ug = float(rng.uniform(np.log(C) + 0.2, ue - 0.01))  # gate ug>lnC, ug<ue
+    h, target, j = float(np.exp(-ug)), float(np.exp(-ue)), 0
+    while h > target and j < 200:
+        h = C * h * h
+        j += 1
+    K = int(np.ceil(np.log2((ue - np.log(C)) / (ug - np.log(C)))))
+    if j != K:
+        ok_bas = False
+# C == 1 degenerates to the model count
+ue, ug = 18.42, 4.0
+if int(np.ceil(np.log2((ue - 0.0) / (ug - 0.0)))) != \
+        int(np.ceil(np.log2(ue / ug))):
+    ok_bas = False
+check("basin: Lemma-3b count ceil(log2((ue-lnC)/(ug-lnC))) exact; C=1 "
+      "recovers model", ok_bas)
 
 # ----------------------------------------------------------- [consistency] --
 ok_cons = True

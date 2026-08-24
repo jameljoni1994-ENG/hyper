@@ -127,6 +127,10 @@ def execute(exp, kind, cfg, seed, method, theta=None, eps=1e-8, mt=120.0):
             s = hybrid_adaptive(pb, x0, eps=eps, max_time=min(mt, 900.0))
         elif method == "RH":
             s = rate_hybrid(pb, x0, eps=eps, max_time=min(mt, 900.0))
+        elif method == "RH-BB":
+            # ablation: same RH economics, v1-style safeguarded-BB phase 1
+            s = rate_hybrid(pb, x0, eps=eps, max_time=min(mt, 900.0),
+                            fo_mode="bb")
         else:
             s = SOLVERS[method](pb, x0, eps, mt)
     except Exception:
@@ -169,7 +173,7 @@ def build_jobs(smoke=False):
                       theta=theta, eps=eps, mt=mt))
 
     e8_methods = ["NAG-CM", "L-BFGS", "Newton", "Newton-CG", "TR",
-                  ("Hybrid-fixed", 1e-3), "Hybrid-adaptive", "RH"]
+                  ("Hybrid-fixed", 1e-3), "Hybrid-adaptive", "RH", "RH-BB"]
 
     if smoke:
         add("E6", "a9a", {}, 0, "NAG-CM", eps=1e-6, mt=25.0)

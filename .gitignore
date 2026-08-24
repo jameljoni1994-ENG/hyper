@@ -1,2 +1,22 @@
+# datasets (download via scripts in README)
 data/
+
+# python
 __pycache__/
+*.pyc
+
+# latex build artifacts
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.synctex.gz
+*.fls
+*.fdb_latexmk
+
+# heavy regenerable artifacts (canonical data lives in all_runs_v2.csv;
+# trajectories/logs are rebuilt by code/run_all_v2.py)
+results/hist/
+results/hist_v2/
+results/logs/
+*.bak
+*.err

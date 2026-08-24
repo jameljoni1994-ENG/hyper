@@ -281,6 +281,28 @@ def newton_cg(pb, x0, eps=1e-8, max_iter=2000, max_time=600.0,
     a cached Hessian would otherwise be free. Inner solver: Steihaug-style
     truncated conjugate gradients (zero initial guess, residual tolerance
     inner_tol * ||g||, negative-curvature stop, cap min(n, 1000) products).
+    Anti-stagnation: every 25 products the true residual (b - H p, one extra
+    counted matvec) ranks the candidates; when the Eisenstat-Walker tolerance
+    is unreachable within the product cap (kappa=1e4, n=100 needs ~e^-2
+    reduction -- the Krylov wall), the best candidate by TRUE residual is
+    returned instead of the final iterate (CG residuals are monotone in the
+    A-norm but NOT in the Euclidean norm). The recursion itself stays pure:
+    feeding the true residual back into it breaks conjugacy and measurably
+    slows long recursions (verified on kappa=1e4 quadratics).
+    Outer acceptance is a TWO-STAGE ordered test on each backtracked trial
+    t: (1) strict ||grad|| decrease -- truncated-Newton practice (Dembo-
+    Eisenstat-Steihaug); it accepts full steps of inexact directions whose
+    actual quadratic decrease (-1/2 g'p - 1/2 p'r) would undershoot the
+    Armijo slope prediction, which otherwise collapses t to micro-steps and
+    stalls (observed at kappa=1e4). It never compares function values, so
+    it is also float-floor-safe. (2) Armijo-on-f fallback for the saddle-
+    region pockets where the gradient aligns with a NEGATIVE-curvature
+    direction: there ||grad|| increases along -pg at EVERY representable t
+    (measured slope ~ -2400 on Rosenbrock), so a pure norm test freezes at
+    a non-stationary point; f keeps its guaranteed first-order decrease
+    (-g'g < 0) and keeps the iterate moving until the pocket is escaped.
+    The steepest-descent fallback uses classic Armijo backtracking with a
+    float-floor micro-step guarantee.
     """
     x = np.asarray(x0, float).copy()
     t0, it, fe, ge, he, hv = time.perf_counter(), 0, 0, 0, 0, 0
@@ -295,7 +317,12 @@ def newton_cg(pb, x0, eps=1e-8, max_iter=2000, max_time=600.0,
         d = b.copy()
         rg2 = float(r @ r)
         gn0 = max(np.sqrt(rg2), 1e-300)
-        for _ in range(min(n, 1000)):
+        # Eisenstat-Walker-style forcing term: fixed relative tolerance far
+        # from the solution, superlinearly tighter near it (keeps the
+        # descent guarantee when direction error ~ kappa * eta matters).
+        eta = min(inner_tol, max(float(gn0) ** 1.5, 1e-14))
+        p_best, rel_best = None, np.inf
+        for k in range(min(n, 1000)):
             Hd = pb.hv(x, d); hv += 1
             dh = float(d @ Hd)
             dn2 = float(d @ d)
@@ -305,11 +332,22 @@ def newton_cg(pb, x0, eps=1e-8, max_iter=2000, max_time=600.0,
             p += a_c * d
             r -= a_c * Hd
             rg2_new = float(r @ r)
-            if np.sqrt(rg2_new) <= inner_tol * gn0:
-                break
-            d = r + (rg2_new / rg2) * d
+            if np.sqrt(rg2_new) <= eta * gn0:
+                return p
+            beta_k = rg2_new / rg2
+            d = r + beta_k * d
             rg2 = rg2_new
-        return p
+            if (k + 1) % 25 == 0:
+                # True-residual checkpoint: one extra counted matvec ranks
+                # candidates by the residual that actually matters. The
+                # recursion stays PURE -- replacement would break conjugacy.
+                rt = b - pb.hv(x, p); hv += 1
+                rel = float(np.sqrt(rt @ rt)) / gn0
+                if rel < rel_best:
+                    rel_best, p_best = rel, p.copy()
+                if rel <= eta:
+                    break
+        return p_best if p_best is not None else p
 
     while True:
         g = pb.grad(x); ge += 1
@@ -323,13 +361,27 @@ def newton_cg(pb, x0, eps=1e-8, max_iter=2000, max_time=600.0,
         f_x = pb.f(x); fe += 1
         moved = False
         if np.isfinite(p).all() and float(g @ p) < 0:
-            a, fe = _backtrack(pb, x, f_x, g, p)
-            if a > 0:
-                x = x + a * p
-                moved = True
+            t = 1.0
+            while t > 1e-16:
+                x_t = x + t * p
+                g_try = pb.grad(x_t); ge += 1
+                if np.isfinite(g_try).all() and \
+                        float(np.linalg.norm(g_try)) < (1 - 1e-12) * gn:
+                    x = x_t
+                    moved = True
+                    break
+                # saddle pocket: norm may increase along ANY t -- let the
+                # guaranteed first-order f-decrease keep the iterate moving
+                f_try = pb.f(x_t); fe += 1
+                if np.isfinite(f_try).all() and \
+                        f_try <= f_x + 1e-4 * t * float(g @ p):
+                    x = x_t
+                    moved = True
+                    break
+                t *= 0.5
         if not moved:
-            ag, fe = _backtrack(pb, x, f_x, g, -g)
-            t = ag if ag > 0 else 1e-6 / max(gn, 1e-300)
+            a, fe = _backtrack(pb, x, f_x, g, -g)
+            t = a if a > 0 else 1e-6 / max(gn, 1e-300)
             x = x - t * g
         it += 1
 

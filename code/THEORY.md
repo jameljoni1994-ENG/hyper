@@ -156,6 +156,65 @@ Measured on E2-quadratic (v1 data): a factor-10 miss downward (theta = 0.01 vs b
 0.1) costs +24 % wall time — same order as the predicted 16 %; the gap is consistent
 with the model's worst-case bias documented next. **[CHECK against v2 E7 runs]**
 
+### Regime map: flatness is conditional, not universal
+
+The penalty scales like `1/u*^2`, so it **diverges as theta* -> 1**. Two honest
+readings every referee will demand:
+
+1. *Sufficient flatness criterion.* Requiring `(ln gamma)^2 / (2 u*^2) <= delta`
+   (the conservative bound, dropping the benign `[1 + ln(L/u*)]` factor) gives
+
+   ```
+   u* >= |ln gamma| / sqrt(2 delta).
+   ```
+
+   Example: surviving a factor-10 miss with <= 5 % excess needs
+   `u* >= ln 10 / sqrt(0.1) ~= 7.28`, i.e. `theta* <= 6.9e-4`. The criterion is
+   conservative by exactly the `[1+ln(L/u*)]` factor (at `u*=7.28` the true
+   excess is ~2.6 %). **[CHECK: regime]**
+
+2. *Blow-up near trivial thresholds.* At `theta* = 0.9` (`u* = 0.105`) the same
+   gamma = 10 miss costs ~3900 % by the exact formula (bound: 24 000 %) versus
+   16 % at `theta* = 0.1` — a >= 20x amplification. Flatness is therefore a
+   property of the **high-precision regime** (`theta*` exponentially below 1),
+   which is precisely the regime practitioners inhabit; state this scope
+   explicitly rather than claiming universal insensitivity.
+
+### Lemma 3b — the missing basin constant (closes the K2 debt)
+
+Let `f` be strongly convex (`mu > 0`) with Lipschitz Hessian (constant `M`) on
+`D = { x : M ||x - x*|| <= mu/2 }`, and suppose the tail enters at `x_k` with
+`g_n(k) < mu/(2M)`-equivalent level, made precise below. Undamped Newton steps
+are then accepted and satisfy the two-side recursion
+
+```
+||g_{k+j}|| <= C ||g_{k+j-1}||^2,        C := M / (2 mu^2),
+```
+
+(classic argument: `||x - x*|| <= ||g||/mu`, error contraction
+`||x+ - x*|| <= (M/2mu) ||x - x*||^2`, cf. Nocedal–Wright Thm 3.5). With
+`v_j := ln ||g_{k+j}||` this is `v_{j+1} = ln C + 2 v_j`, solved exactly:
+
+```
+v_J <= -u_eps   <=>   J >= log2( (u_eps - ln C) / (u_g - ln C) ),
+u_eps := ln(1/eps),  u_g := ln(1/g_n(k)).
+```
+
+**Lemma 3b.** If `u_g > ln C` (the *entry gate*: the gradient level must already
+sit below `1/C`), then the tail needs exactly
+
+```
+K2_exact(g_n, eps) = ceil( log2( (u_eps - ln C) / (u_g - ln C) ) )
+```
+
+squarings; for `u_g <= ln C` no squaring phase is guaranteed by this argument.
+For `C = 1` this reduces to the model count `log2(u_eps/u_g)`; for `C > 1` the
+count inflates and diverges as entry approaches the gate — the quantitative
+form of "do not switch before the basin". This replaces the heuristic
+`c_basin` constant in `k2_model` by an explicit function of measurable
+curvature ratios; RH's runtime estimator keeps the conservative floor-1 count,
+which Lemma 3b shows is an *under*-estimate away from the gate. **[CHECK: basin]**
+
 ---
 
 ## 4. Honest scope: what the closed form cannot do (motivates RH)
@@ -190,10 +249,30 @@ Decision rule evaluated on a decadal schedule of the gradient level:
    (trust the fit only if `W` spans >= 2 natural decades).
 3. Predicted remaining first-order work: `T_stay = c1_hat * ln(g_n/eps) / |ln rho_hat|`.
 4. Rolling-median probe cost `c2_hat` (updated lazily by actual probes).
-5. Switch iff `gn <= theta_cap` AND `c2_hat * K2_est < margin * T_stay`, where
-   `K2_est` uses the Prop.-2-aware count `max(1, log2(ln(1/eps)/ln(1/gn)))`.
-6. Safeguarded probe (Lemma 1 assumptions) then the float-floor-safe tail.
+5. Switch iff `gn <= theta_cap` AND `c2_eff * K2_est < margin * T_stay`, where
+   `c2_eff = c2_hat` once probes have been measured and `c2_eff = c2_prior *
+   c1_hat` (pessimistic prior, `c2_prior = 100`; measured c2/c1 spans ~38-3400
+   on our families) before the first probe; `K2_est` uses the Prop.-2-aware
+   count `max(1, log2(ln(1/eps)/ln(1/gn)))`.
+6. Estimator validity gate: the contraction fit is trusted only when the
+   window spans >= span_trust AND `0 < rho_hat < 1` (genuine descent); a
+   rising window is a transient, and its |ln rho_hat| would understate T_stay.
+7. Safeguarded probe (Lemma 1 assumptions; two-stage acceptance — strict
+   gradient-norm decrease, else Armijo on f, the norm arm being
+   float-floor-safe) then the float-floor-safe tail. A probe "fails" only
+   when neither arm certifies any step; otherwise the tail opens and its
+   stagnation monitor judges productivity — tiny certified steps from
+   near-flat curvature (Gauss–Newton length pathology) are legitimate
+   damped-Newton moves, not failures.
+8. Desperation measurement arm: if the fit never validates but gn has sat
+   under theta_cap for streak_need consecutive checkpoints, fire a
+   measurement probe anyway (same safeguard; outcome feeds c2_hat).
+   Rationale: a regime where no 30-point window ever looks like clean
+   exponential descent is precisely a slow-flat regime where the economic
+   case for probing is strongest and Lemma 3 makes misfires cheap.
 
 Properties: no Lanczos, no kappa, no closed-form theta at runtime; estimator reads the
 *realized* spectral progress, immune to worst-case bias (D3); decision errors are
-bounded by Lemma 3's quadratic penalty, so a margin of order one suffices.
+bounded by Lemma 3's quadratic penalty — *in the flat regime of the regime map* —
+so a margin of order one and a pessimistic prior suffice: lateness is cheap,
+earliness is not.
