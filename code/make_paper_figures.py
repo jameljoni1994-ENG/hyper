@@ -111,30 +111,71 @@ def C(u, alpha=1.0, beta=2.302585093):
 u_star = 2.302585093
 uu = np.linspace(0.06, 12, 500)
 fig, (a1, a2) = plt.subplots(1, 2, figsize=(6.8, 2.5))
-a1.plot(uu, C(uu) / C(u_star), lw=1.4, color=OI["blue"])
-a1.axvline(u_star, color=OI["verm"], ls="--", lw=0.9)
-a1.plot([u_star], [1.0], "*", ms=10, color=OI["verm"])
+
+
+def _band(target=1.05):
+    lo, hi = 0.06, u_star
+    for _ in range(90):
+        mid = 0.5 * (lo + hi)
+        if C(mid) / C(u_star) > target:
+            lo = mid
+        else:
+            hi = mid
+    ul = 0.5 * (lo + hi)
+    lo, hi = u_star, 12.0
+    for _ in range(90):
+        mid = 0.5 * (lo + hi)
+        if C(mid) / C(u_star) < target:
+            lo = mid
+        else:
+            hi = mid
+    return ul, 0.5 * (lo + hi)
+
+
+u_lo5, u_hi5 = _band()
+a1.axvspan(u_lo5, u_hi5, color=OI["yellow"], alpha=0.18, lw=0, zorder=0)
+print(f"F2(a): +5% band u=[{u_lo5:.3f},{u_hi5:.3f}] -> "
+      f"theta in [{math.exp(-u_hi5):.4f},{math.exp(-u_lo5):.4f}] "
+      f"(x{math.exp(-u_lo5)/0.1:.1f} / /{0.1/math.exp(-u_hi5):.1f})")
+a1.plot(uu, C(uu) / C(u_star), lw=1.4, color=OI["blue"], zorder=3)
+a1.axvline(u_star, color=OI["verm"], ls="--", lw=0.9, zorder=4)
+a1.plot([u_star], [1.0], "*", ms=10, color=OI["verm"], zorder=4)
 a1.axhline(1.05, color="0.6", ls=":", lw=0.8)
 a1.text(9.3, 1.06, "+5%", fontsize=7, color="0.35")
 a1.set_xlabel(r"$u=\ln(1/\theta)$")
 a1.set_ylabel(r"$C(u)/C(u^\star)$")
 a1.set_title(r"(a) model cost ($\alpha{=}1,\beta{=}\ln 10$, $\epsilon{=}10^{-8}$)",
              pad=2)
-for us, col in [(0.105, OI["verm"]), (0.5, OI["orange"]),
-                (2.303, OI["green"]), (7.28, OI["blue"])]:
-    g = np.geomspace(0.02, 100, 300)
-    ex = 100 * np.log(g) ** 2 / (2 * us ** 2 *
-                                 (1 + np.log(L / us)))
-    us_lbl = "0.105" if abs(us - 0.105) < 1e-9 else "%.3g" % us
-    a2.semilogx(g, np.clip(ex, 0, 400), lw=1.3, color=col,
-                label="$u^{\\star}{=}" + us_lbl + "$")
+CURVES = [(0.105, OI["verm"], "0.105"), (0.5, OI["orange"], "0.50"),
+          (2.303, OI["green"], "2.30"), (7.28, OI["blue"], "7.28")]
+
+
+def excess(us, g):
+    return 100 * np.log(g) ** 2 / (2 * us ** 2 * (1 + np.log(L / us)))
+
+
+for us, col, lbl in CURVES:
+    g = np.geomspace(0.02, 100, 800)
+    a2.semilogx(g, excess(us, g), lw=1.3, color=col,
+                label="$u^{\\star}{=}" + lbl + "$")
 a2.axhline(5, color="0.6", ls=":", lw=0.8)
-a2.text(45, 7, "5%", fontsize=7, color="0.35")
-a2.set_ylim(0, 400)
+a2.text(45, 6.2, "5%", fontsize=7, color="0.35")
+a2.set_yscale("log")
+a2.set_ylim(0.05, 30000)
+v10 = {us: float(excess(us, 10.0)) for us, _, _ in CURVES}
+print("F2(b): exact excess at gamma=10:",
+      {f"{k:g}": round(v, 1) for k, v in v10.items()})
+for us, col, _ in CURVES:
+    if us in (0.105, 2.303):
+        a2.plot([10], [v10[us]], "o", ms=3, color=col, zorder=5)
+a2.annotate(r"$\approx$3900%", xy=(10, v10[0.105]), xytext=(-46, -1),
+            textcoords="offset points", fontsize=6.5, color=OI["verm"])
+a2.annotate("16%", xy=(10, v10[2.303]), xytext=(4, -13),
+            textcoords="offset points", fontsize=6.5, color=OI["green"])
 a2.set_xlabel(r"misspecification factor $\gamma$")
 a2.set_ylabel(r"excess cost [%]")
 a2.set_title("(b) sensitivity regime map (Lemma 3)", fontsize=8.5, pad=9)
-a2.legend(loc="upper center", ncol=2, columnspacing=0.9)
+a2.legend(loc="upper left", ncol=2, columnspacing=0.9)
 fig.tight_layout(w_pad=1.6)
 save(fig, "F2_theory_penalty.pdf")
 
